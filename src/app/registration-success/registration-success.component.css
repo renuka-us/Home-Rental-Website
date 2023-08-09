@@ -1,0 +1,24 @@
+:root {
+    --bgcolor: rgb(62, 184, 255);
+
+}
+
+body {
+    background-color: rgb(62, 184, 255);
+    height: 100vh;
+
+}
+.d-flex {
+    height: 100vh;
+}
+img {
+    width: 10vw;
+
+}
+.btn{
+    width: fit-content;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}

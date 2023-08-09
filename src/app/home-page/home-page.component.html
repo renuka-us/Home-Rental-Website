@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Homes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand float-start" href="#"><img class="w-50" src="assets/images/home.png" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-md-0 align-items-center navbar-nav-scroll"
+                    style="--bs-scroll-height: 100px;">
+                    <li class="nav-item py-2 me-2">
+                        <select class="form-select border border-0" [(ngModel)]="selectedCity"
+                            (change)="onSelectCity($event)">
+                            <option value="">Select City</option>
+                            <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+
+                        </select>
+                    </li>
+                    <li class="nav-item py-2">
+                        <select class="form-select px-4 border border-0 me-2" [(ngModel)]="selectedGender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </li>
+
+                    <li class="nav-item float-end">
+                        <form class="" role="search">
+                            <div class="input-group form-control me-2 d-flex justify-content-evenly">
+                                <i class="fas fa-search px-2 align-self-center"></i>
+                                <input class="border form-control border-0 p-0 m-0" [(ngModel)]="searchLocation"
+                                    type="search" placeholder="Search by Location" aria-label="Search"
+                                    (input)="searchingLocation($event)">
+
+                            </div>
+                        </form>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="btn">Schedule Visits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="btn">Buy a Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning">List your Property</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3" *ngIf="selectedCity">
+        <h2 class="text-center">Popular Localities in {{selectedCity}}</h2>
+        <div class="row">
+
+            <div class="col col-lg-4 col-xs-12 col-sm-6 align-self-center "
+                *ngFor="let location of getLocationsForCity(selectedCity) | filterLocations:searchLocation">
+                <div class="card" style="width: 18rem;" (click)="navigateToDetails(location.name,selectedCity)">
+                    <img [src]="location.images" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{location.name}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Strating price &#8377; {{location.startingPrice}} </li>
+                        <li class="list-group-item">{{location.numberOfHouses}} houses</li>
+                    </ul>
+                    <div class="card-body">
+                        <a [routerLink]="['/home-details', location.name,selectedCity]" class="card-link">Explore Homes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

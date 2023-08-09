@@ -1,0 +1,39 @@
+:root {
+    --bgcolor: rgb(62, 184, 255);
+
+}
+
+body {
+    background-color: rgb(62, 184, 255);
+    height: 100vh;
+
+}
+
+.d-flex {
+    height: 100vh;
+}
+
+form {
+    width: 70%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+input:not([type=button]) {
+    border: 0;
+    background-color: var(--bgcolor);
+}
+
+.row {
+    border-bottom: 1px solid black;
+
+}
+
+img {
+    width: 10vw;
+
+}
+input{
+    color:inherit;
+}

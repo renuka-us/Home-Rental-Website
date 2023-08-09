@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand float-start" href="#"><img class="w-50" src="assets/images/home.png" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-md-0 align-items-center navbar-nav-scroll"
+                    style="--bs-scroll-height: 100px;">
+                    <li class="nav-item py-2 me-2">
+                        <select class="form-select border border-0" [(ngModel)]="selectedCity"
+                            (change)="onSelectCity($event)">
+                            <option  [value]="cityofLocation">{{ cityofLocation }}</option>
+    
+                        </select>
+                    </li>
+                    <li class="nav-item py-2">
+                        <select class="form-select px-4 border border-0 me-2" [(ngModel)]="selectedGender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </li>
+    
+    
+                    <li class="nav-item">
+                        <a href="#" class="btn">Schedule Visits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="btn">Buy a Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning">List your Property</button>
+                    </li>
+                </ul>
+    
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-center m-4">Houses for rent in {{location}}</h2>
+    <div class="d-flex align-items-center justify-content-center flex-column">
+       
+                    <div class="card m-2" style="width: 80%;" *ngFor="let home of homeDetails">
+                        <img class="card-img-top" style="height: 18rem" [src]="home.image" class="card-img-top"
+                            alt="House Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ home.name }}</h5>
+                            <div class="card-text d-flex justify-content-between">
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-money-bill"></i></span>
+                                    Rent: ${{ home.rent }}/month
+                                </div>
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-home"></i></span>
+                                    Type: {{ home.type }}
+                                </div>
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-couch"></i></span>
+                                    Furnishing: {{ home.furnishing }}
+                                </div>
+                            </div>
+                            <div class="card-text d-flex justify-content-between">
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-ruler-combined"></i></span>
+                                    Build-up Area: {{ home.area }} sq.ft
+                                </div>
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-parking"></i></span>
+                                    Parking: {{ home.parking }}
+                                </div>
+                                <div class="col m-2">
+                                    <span class="card-icon"><i class="fas fa-phone"></i></span>
+                                    Owner's Contact: {{ home.contact }}
+                                </div>
+                            </div>
+                            <div class="card-text m-2">
+                                <span class="card-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                Address: {{ home.address }},{{location}},{{cityofLocation}}
+                            </div>
+                            <div class="card-text m-2">
+                                <span class="card-icon"><i class="fas fa-file-alt"></i></span>
+                                Description: {{ home.description }}
+                            </div>
+                        </div>
+                
+        </div>
+
+    </div>
+
+
+    
+</body>
+</html>
